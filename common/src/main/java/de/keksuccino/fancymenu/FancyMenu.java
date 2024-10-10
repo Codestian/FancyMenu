@@ -20,12 +20,17 @@ import org.jetbrains.annotations.NotNull;
 
 public class FancyMenu {
 
+<<<<<<< HEAD
+=======
+	//TODO re-implement auto-sizing and sticky anchor in later update (needs more work first) (uncomment options in AbstractEditorElement)
+
+>>>>>>> 58a3e9e... v3.3.0
 	//TODO übernehmen (locals)
 
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	//TODO übernehmen
-	public static final String VERSION = "3.2.4";
+	public static final String VERSION = "3.3.0";
 	public static final String MOD_LOADER = Services.PLATFORM.getPlatformName();
 	public static final String MOD_ID = "fancymenu";
 

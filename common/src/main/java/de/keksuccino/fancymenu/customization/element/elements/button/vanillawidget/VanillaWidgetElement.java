@@ -80,6 +80,7 @@ public class VanillaWidgetElement extends ButtonElement implements HideableEleme
         //do nothing
     }
 
+    //TODO übernehmen
     @Override
     public void updateWidgetTexture() {
 
@@ -88,15 +89,12 @@ public class VanillaWidgetElement extends ButtonElement implements HideableEleme
         RenderableResource sliderBackNormal = null;
 
         //Normal
-        if ((this.sliderBackgroundAnimationNormal != null) && AnimationHandler.animationExists(this.sliderBackgroundAnimationNormal)) {
-            IAnimationRenderer r = AnimationHandler.getAnimation(this.sliderBackgroundAnimationNormal);
-            if (r instanceof AdvancedAnimation a) {
-                a.setLooped(this.loopBackgroundAnimations);
-                sliderBackNormal = a;
-            }
-        }
         if (this.sliderBackgroundTextureNormal != null) {
             sliderBackNormal = this.sliderBackgroundTextureNormal.get();
+        }
+        //Highlighted
+        if (this.sliderBackgroundTextureHighlighted != null) {
+            sliderBackHighlighted = this.sliderBackgroundTextureHighlighted.get();
         }
 
         if (this.getWidget() instanceof CustomizableSlider w) {

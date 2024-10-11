@@ -1,5 +1,6 @@
 package de.keksuccino.fancymenu.customization.loadingrequirement.requirements.world.player;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import de.keksuccino.fancymenu.customization.loadingrequirement.LoadingRequirement;
 import de.keksuccino.fancymenu.customization.loadingrequirement.internal.LoadingRequirementInstance;
 import de.keksuccino.fancymenu.platform.Services;
@@ -10,12 +11,12 @@ import de.keksuccino.fancymenu.util.rendering.ui.screen.StringBuilderScreen;
 import de.keksuccino.fancymenu.util.rendering.ui.screen.texteditor.TextEditorFormattingRule;
 import de.keksuccino.fancymenu.util.rendering.ui.widget.editbox.EditBoxSuggestions;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Registry;
+import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -127,7 +128,8 @@ public class IsEntityNearbyRequirement extends LoadingRequirement {
         try {
             ClientLevel level = Minecraft.getInstance().level;
             if (level != null) {
-                level.registryAccess().lookupOrThrow(Registries.ENTITY_TYPE).listElementIds().forEach(key -> types.add(key.location()));
+                Registry.ENTITY_TYPE.asHolderIdMap().forEach(biomeHolder -> biomeHolder.unwrap().map(key -> types.add(key.location()), biome -> ""));
+                //level.registryAccess().lookupOrThrow(Registries.ENTITY_TYPE).listElementIds().forEach(key -> types.add(key.location()));
             }
         } catch (Exception ex) {
             LOGGER.error("[FANCYMENU] Failed to get entity types for 'Is Entity Nearby' loading requirement!", ex);
@@ -188,7 +190,7 @@ public class IsEntityNearbyRequirement extends LoadingRequirement {
         }
 
         @Override
-        public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partial) {
+        public void render(@NotNull PoseStack graphics, int mouseX, int mouseY, float partial) {
             super.render(graphics, mouseX, mouseY, partial);
             this.suggestions.render(graphics, mouseX, mouseY);
         }

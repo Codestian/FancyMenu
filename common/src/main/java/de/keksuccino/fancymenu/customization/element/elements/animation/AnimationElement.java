@@ -33,7 +33,7 @@ public class AnimationElement extends AbstractElement {
     }
 
     @Override
-    public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partial) {}
+    public void render(@NotNull PoseStack graphics, int mouseX, int mouseY, float partial) {}
 
     protected void updateResources() {}
 

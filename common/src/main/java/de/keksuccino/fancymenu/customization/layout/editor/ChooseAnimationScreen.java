@@ -1,12 +1,6 @@
-
 package de.keksuccino.fancymenu.customization.layout.editor;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import de.keksuccino.fancymenu.customization.animation.AdvancedAnimation;
-import de.keksuccino.fancymenu.customization.animation.AnimationHandler;
-import de.keksuccino.fancymenu.util.input.InputConstants;
-import de.keksuccino.fancymenu.util.rendering.AspectRatio;
 import de.keksuccino.fancymenu.util.rendering.text.Components;
 import de.keksuccino.fancymenu.util.rendering.ui.UIBase;
 import de.keksuccino.fancymenu.util.rendering.ui.scroll.v1.scrollarea.ScrollArea;
@@ -39,7 +33,7 @@ public class ChooseAnimationScreen extends Screen {
     protected void init() {}
 
     @Override
-    public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partial) {}
+    public void render(@NotNull PoseStack graphics, int mouseX, int mouseY, float partial) {}
 
     protected void setSelectedAnimation(@Nullable AnimationScrollEntry entry) {}
 

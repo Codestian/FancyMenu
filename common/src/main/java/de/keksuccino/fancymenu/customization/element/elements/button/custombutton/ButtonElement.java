@@ -114,7 +114,7 @@ public class ButtonElement extends AbstractElement implements ExecutableElement 
         if (this.getWidget() != null) this.updateWidget();
     }
 
-    protected void renderElementWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partial) {
+    protected void renderElementWidget(@NotNull PoseStack graphics, int mouseX, int mouseY, float partial) {
         if (this.getWidget() != null) {
             this.getWidget().render(graphics, mouseX, mouseY, partial);
         }

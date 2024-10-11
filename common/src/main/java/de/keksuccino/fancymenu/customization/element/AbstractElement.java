@@ -140,9 +140,9 @@ public abstract class AbstractElement extends GuiComponent implements Widget, Gu
 	//TODO übernehmen
 	/**
 	 * This is the internal render method that should only get overridden if there's really no other way around it.<br>
-	 * The normal element rendering logic should be in {@link AbstractElement#render(GuiGraphics, int, int, float)}.
+	 * The normal element rendering logic should be in {@link AbstractElement#render(PoseStack, int, int, float)}.
 	 */
-	public void renderInternal(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partial) {
+	public void renderInternal(@NotNull PoseStack pose, int mouseX, int mouseY, float partial) {
 
 		this.tickBaseOpacity();
 
@@ -165,7 +165,7 @@ public abstract class AbstractElement extends GuiComponent implements Widget, Gu
 		this.renderTick_Inner_Stage_2();
 
 		//Render the actual element
-		this.render(graphics, mouseX, mouseY, partial);
+		this.render(pose, mouseX, mouseY, partial);
 
 		this.renderTick_Tail();
 

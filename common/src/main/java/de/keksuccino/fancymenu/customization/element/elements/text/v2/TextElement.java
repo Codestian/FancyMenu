@@ -137,9 +137,9 @@ public class TextElement extends AbstractElement {
 
     //TODO übernehmen
     @Override
-    public void renderInternal(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partial) {
+    public void renderInternal(@NotNull PoseStack pose, int mouseX, int mouseY, float partial) {
 
-        super.renderInternal(graphics, mouseX, mouseY, partial);
+        super.renderInternal(pose, mouseX, mouseY, partial);
 
         if (!this.shouldRender() && this.lastTickShouldRender) {
             this.markdownRenderer.resetHovered();

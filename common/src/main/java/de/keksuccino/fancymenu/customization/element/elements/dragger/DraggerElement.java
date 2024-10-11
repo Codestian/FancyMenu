@@ -1,13 +1,13 @@
 package de.keksuccino.fancymenu.customization.element.elements.dragger;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import de.keksuccino.fancymenu.customization.element.AbstractElement;
 import de.keksuccino.fancymenu.customization.element.ElementBuilder;
 import de.keksuccino.fancymenu.mixin.mixins.common.client.IMixinAbstractWidget;
 import de.keksuccino.fancymenu.util.rendering.DrawableColor;
 import de.keksuccino.fancymenu.util.rendering.RenderingUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -60,7 +60,7 @@ public class DraggerElement extends AbstractElement {
     }
 
     protected void onDraggerElementClickedOrReleased(double mouseX, double mouseY, boolean released) {
-        if (!isEditor() && this.widget.isHovered()) {
+        if (!isEditor() && ((IMixinAbstractWidget)this.widget).getIsHoveredFancyMenu()) {
             this.leftMouseDownOnElement = !released;
             this.mouseDownX = (int) mouseX;
             this.mouseDownY = (int) mouseY;
@@ -97,7 +97,7 @@ public class DraggerElement extends AbstractElement {
     }
 
     @Override
-    public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partial) {
+    public void render(@NotNull PoseStack pose, int mouseX, int mouseY, float partial) {
 
         this.widget.visible = this.shouldRender();
 
@@ -108,19 +108,19 @@ public class DraggerElement extends AbstractElement {
             int w = this.getAbsoluteWidth();
             int h = this.getAbsoluteHeight();
 
-            this.widget.setX(x);
-            this.widget.setY(y);
+            this.widget.x = x;
+            this.widget.y = y;
             this.widget.setWidth(w);
             ((IMixinAbstractWidget)this.widget).setHeightFancyMenu(h);
-            this.widget.render(graphics, mouseX, mouseY, partial);
+            this.widget.render(pose, mouseX, mouseY, partial);
 
             if (isEditor()) {
                 RenderSystem.enableBlend();
-                graphics.fill(x, y, x + w, y + h, ELEMENT_COLOR.getColorInt());
-                graphics.enableScissor(x, y, x + w, y + h);
-                graphics.drawCenteredString(Minecraft.getInstance().font, this.getDisplayName(), x + (w / 2), y + (h / 2) - (Minecraft.getInstance().font.lineHeight / 2), -1);
-                graphics.disableScissor();
-                RenderingUtils.resetShaderColor(graphics);
+                fill(pose, x, y, x + w, y + h, ELEMENT_COLOR.getColorInt());
+                RenderingUtils.enableScissor(x, y, x + w, y + h);
+                drawCenteredString(pose, Minecraft.getInstance().font, this.getDisplayName(), x + (w / 2), y + (h / 2) - (Minecraft.getInstance().font.lineHeight / 2), -1);
+                RenderingUtils.disableScissor();
+                RenderingUtils.resetShaderColor();
             }
 
         } else {

@@ -5,12 +5,14 @@
   "client": [
     "client.IMixinAbstractSelectionList",
     "client.IMixinAbstractWidget",
+    "client.IMixinBossHealthOverlay",
     "client.IMixinButton",
     "client.IMixinChatScreen",
     "client.IMixinClientLanguage",
     "client.IMixinCommandSuggestions",
     "client.IMixinConnectScreen",
     "client.IMixinEditBox",
+    "client.IMixinGui",
     "client.IMixinLevelLoadingScreen",
     "client.IMixinMinecraft",
     "client.IMixinMusicManager",
@@ -26,7 +28,11 @@
     "client.MixinAbstractSliderButton",
     "client.MixinAbstractWidget",
     "client.MixinConnectScreen",
+<<<<<<< HEAD
     "client.MixinContainerEventHandler",
+=======
+    "client.MixinGameNarrator",
+>>>>>>> e7f4cc0... v3.3.0 MC 1.19.2
     "client.MixinGenericDirtMessageScreen",
     "client.MixinImageButton",
     "client.MixinLevelLoadingScreen",
